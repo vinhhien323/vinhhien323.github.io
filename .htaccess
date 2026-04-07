@@ -1,0 +1,15 @@
+DirectoryIndex index.html
+
+# Fallback for hosts where mod_rewrite may be restricted.
+ErrorDocument 404 /~e1326319/index.html
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	RewriteRule ^index\.html$ - [L]
+	RewriteCond %{REQUEST_FILENAME} -f [OR]
+	RewriteCond %{REQUEST_FILENAME} -d
+	RewriteRule ^ - [L]
+
+	RewriteRule . /~e1326319/index.html [L]
+</IfModule>
