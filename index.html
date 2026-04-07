@@ -5,6 +5,25 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Huynh Dang Vinh Hien - Personal Webpage</title>
+    <script>
+      (function restorePathFromQuery(location) {
+        if (location.search[1] !== '/') {
+          return;
+        }
+        const decoded = location.search
+          .slice(1)
+          .split('&')
+          .map(function (segment) {
+            return segment.replace(/~and~/g, '&');
+          })
+          .join('?');
+        window.history.replaceState(
+          null,
+          '',
+          location.pathname.slice(0, -1) + decoded + location.hash,
+        );
+      })(window.location);
+    </script>
     <script type="module" crossorigin src="/assets/index-C53usmaz.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-BsWXN1Np.css">
   </head>

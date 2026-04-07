@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=/" />
+    <script>
+      // Redirect unknown paths to index while preserving the original route.
+      (function redirectToIndexWithRoute(location) {
+        const segmentCount = 0;
+        const basePath = location.pathname
+          .split('/')
+          .slice(0, 1 + segmentCount)
+          .join('/');
+        const routePath = location.pathname
+          .slice(1)
+          .split('/')
+          .slice(segmentCount)
+          .join('/')
+          .replace(/&/g, '~and~');
+        const query = location.search
+          ? '&' + location.search.slice(1).replace(/&/g, '~and~')
+          : '';
+        const target =
+          location.protocol +
+          '//' +
+          location.hostname +
+          (location.port ? ':' + location.port : '') +
+          basePath +
+          '/?/' +
+          routePath +
+          query +
+          location.hash;
+        location.replace(target);
+      })(window.location);
+    </script>
+    <title>Redirecting...</title>
+  </head>
+  <body></body>
+</html>
